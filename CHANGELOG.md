@@ -10,6 +10,6 @@ All notable changes to the GetBirthChart WordPress plugin are documented here.
 - Moon Sign calculator
 - Rising Sign calculator
 - Big Three calculator
-- API key settings
-- Secure server-side GetBirthChart API proxy
-- Unknown birth-time handling
+- GetBirthChart API-key settings
+- Secure server-side API proxy
+- Unknown birth-time support

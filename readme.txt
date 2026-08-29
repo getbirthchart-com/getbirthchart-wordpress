@@ -12,7 +12,9 @@ Embed GetBirthChart-powered Birth Chart, Moon Sign, Rising Sign, and Big Three c
 
 == Description ==
 
-GetBirthChart – Birth Chart Calculators lets you embed calculators on WordPress pages and posts. Site visitors enter a birth date, optional birth time, and birth place. The plugin sends that information to the GetBirthChart public API from your WordPress server and displays a concise result.
+GetBirthChart – Birth Chart Calculators lets you embed calculators on WordPress pages and posts. A GetBirthChart developer API key is required. Calculations are processed by the GetBirthChart API; this plugin does not calculate astrology in PHP.
+
+Site visitors enter a birth date, optional birth time, and birth place. The plugin sends that information from your WordPress server to GetBirthChart and displays a concise result.
 
 Supported calculators:
 
@@ -21,27 +23,25 @@ Supported calculators:
 * Rising Sign
 * Big Three
 
-The plugin does not calculate astrology in PHP. It uses your GetBirthChart developer API key on the server so the key is not exposed in the browser.
-
 If a visitor does not know their birth time, the plugin passes GetBirthChart’s official unknown-time flag. It does not substitute noon or invent a Rising sign.
 
 == Installation ==
 
-1. Upload the plugin to `/wp-content/plugins/getbirthchart` or install it from a zip file.
+1. Upload the plugin folder to `/wp-content/plugins/getbirthchart`, or install the plugin zip from Plugins → Add Plugin → Upload Plugin.
 2. Activate the plugin through the Plugins screen.
 3. Go to Settings → GetBirthChart.
-4. Enter a GetBirthChart API key from https://getbirthchart.com/developers and save.
+4. Enter a GetBirthChart API key from https://getbirthchart.com/developers/ and save.
 5. Embed a calculator with a shortcode or the GetBirthChart Calculator block.
 
 == Frequently Asked Questions ==
 
 = Where do I get an API key? =
 
-Create one in the GetBirthChart developer dashboard: https://getbirthchart.com/developers
+Create one in the GetBirthChart developer dashboard: https://getbirthchart.com/developers/
 
-= Does this plugin store birth data? =
+= Does this plugin store birth data in WordPress? =
 
-No. Visitor birth date, birth time, birth place, and calculation results are not saved in the WordPress database.
+No. This plugin does not save visitor birth date, birth time, birth place, or calculation results in the WordPress database. GetBirthChart’s handling of data it receives is described in its Privacy Policy.
 
 = What happens if someone does not know their birth time? =
 
@@ -62,7 +62,7 @@ No. The key is stored as a WordPress option and used only in server-side request
 
 = 0.1.0 =
 * Birth Chart, Moon Sign, Rising Sign, and Big Three calculators.
-* API key settings and a server-side connection test.
+* GetBirthChart API-key settings and a server-side connection test.
 * Secure server-side GetBirthChart API proxy.
 * Unknown birth-time handling.
 
@@ -73,22 +73,24 @@ Initial release.
 
 == External Services ==
 
-This plugin connects to GetBirthChart to calculate astrology results.
+This plugin connects to the GetBirthChart API to calculate astrology results.
 
-Service: GetBirthChart
-Service URL: https://getbirthchart.com/
+When a visitor uses a GetBirthChart calculator, information entered into the calculator — such as birth date, birth time, and birth place — may be sent to GetBirthChart for processing. Birth place is resolved through GetBirthChart’s places search so the calculation can use coordinates and timezone.
 
-What is sent and when:
+The site owner's GetBirthChart API key is used server-side to authenticate natal calculation requests and is not intentionally exposed to site visitors.
 
-* When a visitor submits a calculator, the plugin sends birth date, optional birth time or an unknown-time flag, and birth place to GetBirthChart.
-* Birth place is first resolved through GetBirthChart’s places search so the calculation can use coordinates and timezone.
-* The site owner’s API key is sent in an Authorization header from the WordPress server. It is not sent from the visitor’s browser.
-* Connection tests from Settings → GetBirthChart send an authenticated request to the GetBirthChart natal API to confirm the stored key. That test does not run a full chart calculation.
+Connection tests from Settings → GetBirthChart send an authenticated request to the GetBirthChart natal API to confirm the stored key. That test does not run a full chart calculation.
 
 The plugin does not send installation telemetry or unrelated site data.
 
-Links:
+GetBirthChart:
+https://getbirthchart.com/
 
-* Privacy Policy: https://getbirthchart.com/privacy/
-* Methodology: https://getbirthchart.com/methodology/
-* Developers: https://getbirthchart.com/developers
+Privacy Policy:
+https://getbirthchart.com/privacy/
+
+Developers:
+https://getbirthchart.com/developers/
+
+Methodology:
+https://getbirthchart.com/methodology/

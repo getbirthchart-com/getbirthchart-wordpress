@@ -19,6 +19,7 @@ class GetBirthChart_Assets {
 	 */
 	public function register(): void {
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_public_assets' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 	}
 
@@ -42,6 +43,46 @@ class GetBirthChart_Assets {
 	}
 
 	/**
+	 * Enqueue on singular content that already contains the shortcode or block.
+	 */
+	public function maybe_enqueue_public_assets(): void {
+		if ( ! is_singular() ) {
+			return;
+		}
+		$post = get_post();
+		if ( ! $post instanceof WP_Post ) {
+			return;
+		}
+		if ( has_shortcode( $post->post_content, 'getbirthchart' ) || has_block( 'getbirthchart/calculator', $post ) ) {
+			$this->enqueue_public_assets();
+		}
+	}
+
+	/**
+	 * Script localization payload. Never includes the API key.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public static function frontend_config(): array {
+		return array(
+			'restUrl' => esc_url_raw( rest_url( 'getbirthchart/v1/calculate' ) ),
+			'nonce'   => wp_create_nonce( 'wp_rest' ),
+			'i18n'    => array(
+				'calculating'        => __( 'Calculating…', 'getbirthchart' ),
+				'calculate'          => __( 'Calculate', 'getbirthchart' ),
+				'unable'             => __( 'Unable to calculate right now.', 'getbirthchart' ),
+				'checkBirth'         => GetBirthChart_Validator::check_birth_information_message(),
+				'risingRequiresTime' => GetBirthChart_Validator::rising_requires_time_message(),
+				'sun'                => __( 'Sun', 'getbirthchart' ),
+				'moon'               => __( 'Moon', 'getbirthchart' ),
+				'rising'             => __( 'Rising', 'getbirthchart' ),
+				'planets'            => __( 'Planetary placements', 'getbirthchart' ),
+				'unknownTimeNote'    => __( 'Birth time was marked unknown. Rising and houses are omitted rather than guessed.', 'getbirthchart' ),
+			),
+		);
+	}
+
+	/**
 	 * Localize and enqueue frontend calculator assets.
 	 */
 	public function enqueue_public_assets(): void {
@@ -50,22 +91,7 @@ class GetBirthChart_Assets {
 		wp_localize_script(
 			'getbirthchart-frontend',
 			'getbirthchartFrontend',
-			array(
-				'restUrl' => esc_url_raw( rest_url( 'getbirthchart/v1/calculate' ) ),
-				'nonce'   => wp_create_nonce( 'wp_rest' ),
-				'i18n'    => array(
-					'calculating'        => __( 'Calculating…', 'getbirthchart' ),
-					'calculate'          => __( 'Calculate', 'getbirthchart' ),
-					'unable'             => __( 'Unable to calculate right now.', 'getbirthchart' ),
-					'checkBirth'         => GetBirthChart_Validator::check_birth_information_message(),
-					'risingRequiresTime' => GetBirthChart_Validator::rising_requires_time_message(),
-					'sun'                => __( 'Sun', 'getbirthchart' ),
-					'moon'               => __( 'Moon', 'getbirthchart' ),
-					'rising'             => __( 'Rising', 'getbirthchart' ),
-					'planets'            => __( 'Planetary placements', 'getbirthchart' ),
-					'unknownTimeNote'    => __( 'Birth time was marked unknown. Rising and houses are omitted rather than guessed.', 'getbirthchart' ),
-				),
-			)
+			self::frontend_config()
 		);
 	}
 

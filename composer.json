@@ -17,6 +17,7 @@
   "scripts": {
     "phpcs": "phpcs",
     "phpunit": "phpunit",
+    "build": "bash scripts/build-release.sh",
     "test": [
       "@phpcs",
       "@phpunit"

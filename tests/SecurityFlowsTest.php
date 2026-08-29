@@ -36,6 +36,21 @@ class SecurityFlowsTest extends TestCase {
 				)
 			)
 		);
+		$this->assertTrue(
+			$controller->has_forbidden_override(
+				array(
+					'scheme' => 'http',
+					'host'   => 'evil.example',
+				)
+			)
+		);
+		$this->assertTrue(
+			$controller->has_forbidden_override(
+				array(
+					'headers' => array( 'Authorization' => 'Bearer stolen' ),
+				)
+			)
+		);
 		$this->assertFalse(
 			$controller->has_forbidden_override(
 				array(
@@ -194,5 +209,13 @@ class SecurityFlowsTest extends TestCase {
 		$this->assertSame( 'Capricorn', $result['sun']['sign'] );
 		$this->assertSame( 'Virgo', $result['moon']['sign'] );
 		$this->assertSame( 'Taurus', $result['rising']['sign'] );
+	}
+
+	public function test_frontend_config_never_includes_api_key(): void {
+		$config = GetBirthChart_Assets::frontend_config();
+		$encoded = wp_json_encode( $config );
+		$this->assertSame( array( 'restUrl', 'nonce', 'i18n' ), array_keys( $config ) );
+		$this->assertStringNotContainsString( 'gbc_live_ab12xyzsecretvalue000000000000000', $encoded );
+		$this->assertStringNotContainsString( 'Authorization', $encoded );
 	}
 }

@@ -64,7 +64,7 @@ $getbirthchart_api_key_error = isset( $_GET['error'] ) && 'api_key' === $_GET['e
 							sprintf(
 								/* translators: %s: developers URL */
 								__( 'Create a key at <a href="%s">getbirthchart.com/developers</a>. The full key is never shown again after you save it.', 'getbirthchart' ),
-								esc_url( 'https://getbirthchart.com/developers' )
+								esc_url( 'https://getbirthchart.com/developers/' )
 							),
 							array( 'a' => array( 'href' => array() ) )
 						);

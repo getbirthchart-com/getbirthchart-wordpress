@@ -2,7 +2,7 @@
 /**
  * Plugin Name: GetBirthChart – Birth Chart Calculators
  * Plugin URI: https://getbirthchart.com/developers
- * Description: Embed GetBirthChart-powered birth chart, Moon sign, Rising sign, and Big Three calculators in WordPress.
+ * Description: Embed GetBirthChart-powered birth chart, Moon sign, Rising sign, and Big Three calculators. Requires a GetBirthChart API key; calculations run on the GetBirthChart API.
  * Version: 0.1.0
  * Author: GetBirthChart
  * Author URI: https://getbirthchart.com/

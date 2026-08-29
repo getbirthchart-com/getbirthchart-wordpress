@@ -12,6 +12,8 @@ GetBirthChart public API
 GetBirthChart calculation engine
 ```
 
+A GetBirthChart API key is required. This plugin is not affiliated with or endorsed by WordPress.
+
 ## Features
 
 - Birth Chart calculator
@@ -21,7 +23,7 @@ GetBirthChart calculation engine
 - Shortcodes and a Gutenberg block
 - Server-side API-key storage
 - Unknown birth-time handling without guessing Rising, houses, or noon
-- No visitor birth-data storage in WordPress
+- No visitor birth-data storage in the WordPress database
 - No telemetry
 
 ## Requirements
@@ -32,17 +34,30 @@ GetBirthChart calculation engine
 
 ## Installation
 
-1. Install the plugin from a release zip or by cloning this repository into `wp-content/plugins/getbirthchart`.
-2. Activate **GetBirthChart – Birth Chart Calculators**.
-3. Open **Settings → GetBirthChart**.
-4. Paste your API key and save.
-5. Use **Test connection** to confirm the stored key.
+### From this GitHub repository
 
-The plugin is inert until an API key is saved and a calculator is embedded. Activation does not call the API, create pages, or send telemetry.
+This is the source repository. Install by cloning into `wp-content/plugins/getbirthchart`, or by building the production zip:
+
+```bash
+bash scripts/build-release.sh
+```
+
+Then upload `dist/getbirthchart-0.1.0.zip` in **Plugins → Add Plugin → Upload Plugin**.
+
+### WordPress.org
+
+This plugin is **not listed on WordPress.org yet**. Do not expect an in-dashboard install from the WordPress Plugin Directory until that listing exists.
 
 ## API key setup
 
-Create a key at [https://getbirthchart.com/developers](https://getbirthchart.com/developers).
+Create a key at [https://getbirthchart.com/developers/](https://getbirthchart.com/developers/).
+
+1. Activate **GetBirthChart – Birth Chart Calculators**.
+2. Open **Settings → GetBirthChart**.
+3. Paste your API key and save.
+4. Use **Test connection** to confirm the stored key.
+
+The plugin is inert until an API key is saved and a calculator is embedded. Activation does not call the API, create pages, or send telemetry.
 
 The key stays on the WordPress server. It is never printed in frontend HTML, JavaScript, shortcodes, or public REST responses. After save, the settings screen shows a masked value such as `gbc_live_ab12••••••••••`.
 
@@ -66,12 +81,14 @@ You can also insert the **GetBirthChart Calculator** block and choose the type f
 
 ## Screenshots
 
-Screenshot assets are not bundled in v0.1. For WordPress.org, capture:
+Screenshot files are not bundled in the plugin zip. WordPress.org directory screenshots belong in the SVN `assets/` folder after approval:
 
 1. Calculator embedded in a WordPress page
 2. Big Three result
 3. Settings → GetBirthChart
 4. Gutenberg block selector
+
+Directory icon and banner files (`icon-128x128.png`, `icon-256x256.png`, `banner-772x250.png`, `banner-1544x500.png`) are also a post-approval SVN task.
 
 ## Development
 
@@ -80,6 +97,7 @@ composer install
 vendor/bin/phpcs
 vendor/bin/phpunit
 composer audit
+bash scripts/build-release.sh
 ```
 
 Composer is for development and CI. Runtime distribution uses the plugin PHP files and does not require `vendor/` on production WordPress installs.
@@ -88,7 +106,7 @@ Composer is for development and CI. Runtime distribution uses the plugin PHP fil
 
 - Settings require `manage_options` and a nonce.
 - The public calculator posts to `/wp-json/getbirthchart/v1/calculate`.
-- That route is not a generic proxy: calculator type is allowlisted, and `url` / `base_url` / `endpoint` / `host` are rejected.
+- That route is not a generic proxy: calculator type is allowlisted, and `url` / `base_url` / `endpoint` / `host` / `scheme` / `headers` are rejected.
 - Site-side rate limiting uses a hashed IP plus calculator type.
 - HTTP timeouts are 15 seconds. Redirects are disabled.
 
@@ -98,7 +116,7 @@ See [SECURITY.md](SECURITY.md).
 
 Submitting a calculator sends birth date, optional birth time or the official unknown-time flag, and birth place to GetBirthChart so the chart can be calculated. Place lookup uses GetBirthChart’s public places search on the same API host so latitude, longitude, and timezone can be resolved. The site owner’s API key is attached only on the server.
 
-The plugin does not store those inputs in WordPress.
+This plugin does not save those inputs in the WordPress database. GetBirthChart’s own privacy practices are described at [https://getbirthchart.com/privacy/](https://getbirthchart.com/privacy/).
 
 ## Uninstall
 
@@ -107,6 +125,6 @@ Deactivation keeps settings. Uninstall deletes plugin-owned options, including t
 ## Links
 
 - [GetBirthChart](https://getbirthchart.com/)
-- [Developers](https://getbirthchart.com/developers)
+- [Developers](https://getbirthchart.com/developers/)
 - [Methodology](https://getbirthchart.com/methodology/)
 - [Privacy Policy](https://getbirthchart.com/privacy/)

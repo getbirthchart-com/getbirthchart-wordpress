@@ -35,7 +35,7 @@ class GetBirthChart_Privacy {
 				'getbirthchart'
 			),
 			esc_html__(
-				'The site owner’s GetBirthChart API key is used on the server. Calculator visitors do not receive that key. This plugin does not store visitor birth information in WordPress by default.',
+				'The site owner’s GetBirthChart API key is used on the server. Calculator visitors do not receive that key. This plugin does not save visitor birth information in the WordPress database.',
 				'getbirthchart'
 			),
 			sprintf(

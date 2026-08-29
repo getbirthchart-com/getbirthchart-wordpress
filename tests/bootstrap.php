@@ -167,6 +167,21 @@ function wp_verify_nonce( $nonce, $action = -1 ) {
 	return 'valid-nonce' === $nonce;
 }
 
+function wp_create_nonce( $action = -1 ) {
+	unset( $action );
+	return 'valid-nonce';
+}
+
+function rest_url( $path = '', $scheme = 'rest' ) {
+	unset( $scheme );
+	return 'https://example.test/wp-json/' . ltrim( (string) $path, '/' );
+}
+
+function esc_url_raw( $url, $protocols = null ) {
+	unset( $protocols );
+	return is_string( $url ) ? $url : '';
+}
+
 function get_option( $option, $default = false ) {
 	return $GLOBALS['getbirthchart_test_options'][ $option ] ?? $default;
 }

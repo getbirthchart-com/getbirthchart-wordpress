@@ -34,13 +34,39 @@ class GetBirthChart_Rest_Controller {
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'calculate' ),
 				'permission_callback' => array( $this, 'permission_calculate' ),
-				'args'                => array(),
+				'args'                => array(
+					'type'         => array(
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_key',
+					),
+					'date'         => array(
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'time'         => array(
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'place'        => array(
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'unknown_time' => array(
+						'type'     => 'boolean',
+						'required' => false,
+					),
+				),
 			)
 		);
 	}
 
 	/**
-	 * Public visitors may call this, but a REST nonce is required.
+	 * Intentionally public: site visitors submit calculators.
+	 * A WordPress REST nonce is still required. This is not an open proxy.
 	 *
 	 * @param WP_REST_Request $request Request.
 	 */
@@ -127,7 +153,18 @@ class GetBirthChart_Rest_Controller {
 	 * @param array<string, mixed> $params Request params.
 	 */
 	public function has_forbidden_override( array $params ): bool {
-		$forbidden = array( 'url', 'base_url', 'endpoint', 'host', 'api_key', 'apiKey', 'authorization', 'path' );
+		$forbidden = array(
+			'url',
+			'base_url',
+			'endpoint',
+			'host',
+			'path',
+			'scheme',
+			'headers',
+			'api_key',
+			'apiKey',
+			'authorization',
+		);
 		foreach ( $forbidden as $key ) {
 			if ( array_key_exists( $key, $params ) ) {
 				return true;
