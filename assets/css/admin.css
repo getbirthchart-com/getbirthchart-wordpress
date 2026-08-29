@@ -1,0 +1,12 @@
+.getbirthchart-settings .getbirthchart-masked-key {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	margin: 0 0 0.5em;
+}
+
+.getbirthchart-settings #getbirthchart-test-result {
+	margin-top: 0.5em;
+}
+
+.getbirthchart-settings code {
+	font-size: 13px;
+}
