@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.3.0",
+  "meta": {
+    "engine": "gbc-astro",
+    "engineVersion": "1.12.2",
+    "houseSystem": "placidus",
+    "zodiac": "tropical"
+  },
+  "subject": {
+    "birthTimeKnown": true
+  },
+  "angles": {
+    "ascendant": { "longitude": 42.1, "sign": "taurus", "degreeInSign": 12.1 }
+  },
+  "bodies": {
+    "sun": { "longitude": 295.28, "sign": "capricorn", "degreeInSign": 25.28 },
+    "moon": { "longitude": 170.08, "sign": "virgo", "degreeInSign": 20.08 },
+    "mercury": { "longitude": 281.18, "sign": "capricorn", "degreeInSign": 11.18 }
+  },
+  "houses": [],
+  "aspects": [],
+  "derived": { "bigThree": { "sun": "capricorn", "moon": "virgo", "rising": "taurus" } },
+  "warnings": []
+}
