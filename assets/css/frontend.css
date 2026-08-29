@@ -1,0 +1,146 @@
+.getbirthchart-calculator {
+	max-width: 36rem;
+	margin: 1.5em 0;
+	font-family: inherit;
+	color: inherit;
+	line-height: 1.5;
+}
+
+.getbirthchart-title {
+	font-size: 1.15em;
+	font-weight: 650;
+	margin: 0 0 0.75em;
+	padding: 0;
+}
+
+.getbirthchart-form fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.getbirthchart-field {
+	margin: 0 0 1em;
+}
+
+.getbirthchart-field label {
+	display: block;
+	margin-bottom: 0.35em;
+	font-weight: 600;
+}
+
+.getbirthchart-field-checkbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5em;
+}
+
+.getbirthchart-field-checkbox input {
+	margin-top: 0.25em;
+}
+
+.getbirthchart-field-checkbox label {
+	display: inline;
+	font-weight: 500;
+	margin: 0;
+}
+
+.getbirthchart-field input[type="date"],
+.getbirthchart-field input[type="time"],
+.getbirthchart-field input[type="text"] {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 0.45em 0.6em;
+	font: inherit;
+	color: inherit;
+}
+
+.getbirthchart-field input:focus {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.getbirthchart-help {
+	margin: 0.35em 0 0;
+	font-size: 0.9em;
+	opacity: 0.85;
+}
+
+.getbirthchart-submit {
+	font: inherit;
+	padding: 0.55em 1.1em;
+	cursor: pointer;
+}
+
+.getbirthchart-submit:focus {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.getbirthchart-submit:disabled {
+	opacity: 0.7;
+	cursor: wait;
+}
+
+.getbirthchart-error {
+	margin: 0 0 1em;
+	color: inherit;
+	font-weight: 600;
+}
+
+.getbirthchart-error:not([hidden]) {
+	display: block;
+}
+
+.getbirthchart-result {
+	margin-top: 1.25em;
+}
+
+.getbirthchart-result-title {
+	font-weight: 650;
+	margin: 0 0 0.5em;
+}
+
+.getbirthchart-result-list,
+.getbirthchart-planets {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.getbirthchart-result-list li,
+.getbirthchart-planets li {
+	margin: 0 0 0.4em;
+}
+
+.getbirthchart-note {
+	margin: 0.75em 0 0;
+	font-size: 0.95em;
+}
+
+.getbirthchart-theme-light {
+	background: #fff;
+	color: #1a1a1a;
+	padding: 1.25em 1.25em 1.4em;
+	border: 1px solid #d0d0d0;
+	border-radius: 6px;
+}
+
+.getbirthchart-theme-light .getbirthchart-field input[type="date"],
+.getbirthchart-theme-light .getbirthchart-field input[type="time"],
+.getbirthchart-theme-light .getbirthchart-field input[type="text"] {
+	border: 1px solid #8a8a8a;
+	background: #fff;
+	color: #1a1a1a;
+}
+
+.getbirthchart-theme-light .getbirthchart-submit {
+	background: #1a1a1a;
+	color: #fff;
+	border: 1px solid #1a1a1a;
+}
+
+.getbirthchart-theme-light .getbirthchart-error {
+	color: #8a1f11;
+}
