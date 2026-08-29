@@ -1,5 +1,6 @@
 /vendor/
 /dist/
+/.runtime/
 /.phpunit.cache/
 /.phpunit.result.cache
 /composer.lock.bak

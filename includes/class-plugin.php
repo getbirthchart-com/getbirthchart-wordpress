@@ -66,12 +66,6 @@ class GetBirthChart_Plugin {
 	 * Wire components.
 	 */
 	public function init(): void {
-		load_plugin_textdomain(
-			'getbirthchart',
-			false,
-			dirname( GETBIRTHCHART_PLUGIN_BASENAME ) . '/languages'
-		);
-
 		$this->assets     = new GetBirthChart_Assets();
 		$this->shortcodes = new GetBirthChart_Shortcodes( $this->assets );
 		$rest             = new GetBirthChart_Rest_Controller();

@@ -101,7 +101,7 @@ class GetBirthChart_Admin {
 	 */
 	public function render_page(): void {
 		if ( ! GetBirthChart_Settings::current_user_can_manage() ) {
-			wp_die( esc_html__( 'You do not have permission to manage GetBirthChart settings.', 'getbirthchart' ) );
+			wp_die( esc_html__( 'You do not have permission to manage GetBirthChart settings.', 'getbirthchart' ), '', array( 'response' => 403 ) );
 		}
 		$settings = GetBirthChart_Settings::get_settings();
 		$masked   = GetBirthChart_Settings::masked_api_key();
@@ -114,7 +114,7 @@ class GetBirthChart_Admin {
 	 */
 	public function handle_save(): void {
 		if ( ! GetBirthChart_Settings::current_user_can_manage() ) {
-			wp_die( esc_html__( 'You do not have permission to manage GetBirthChart settings.', 'getbirthchart' ) );
+			wp_die( esc_html__( 'You do not have permission to manage GetBirthChart settings.', 'getbirthchart' ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( self::NONCE_SAVE );
 
