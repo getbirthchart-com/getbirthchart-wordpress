@@ -13,3 +13,4 @@ All notable changes to the GetBirthChart WordPress plugin are documented here.
 - GetBirthChart API-key settings
 - Secure server-side API proxy
 - Unknown birth-time support
+- Documentation aligned with the `gbc-astro` 1.13.0 natal contract; plugin version remains 0.1.0.

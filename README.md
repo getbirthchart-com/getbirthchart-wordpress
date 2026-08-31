@@ -26,6 +26,18 @@ A GetBirthChart API key is required. This plugin is not affiliated with or endor
 - No visitor birth-data storage in the WordPress database
 - No telemetry
 
+## `gbc-astro` 1.13.0 compatibility
+
+The current GetBirthChart API contract is backed by `gbc-astro` 1.13.0. This
+plugin uses the API's basic natal calculation path and sends the resolved local
+date, optional local time, timezone, latitude, and longitude. It does not expose
+the core's Sidereal, Custom aspect, Mean Node, Lilith, or advanced house-system
+settings in the WordPress UI. Those are core/API capabilities, not plugin
+features.
+
+The API's natal schema is `1.9.0`. The plugin does not require a
+`calculationHash` field in the HTTP response.
+
 ## Requirements
 
 - WordPress 6.4 or later
@@ -79,6 +91,29 @@ Other v0.1 types:
 
 You can also insert the **GetBirthChart Calculator** block and choose the type from the sidebar.
 
+## Unknown birth time
+
+Birth time is optional for Birth Chart, Moon Sign, and Big Three calculators.
+When the visitor checks **I don't know my birth time**, the plugin sends
+`unknown_time=true` and `local_time=null`. The backend owns the labeled
+unknown-time assessment; this plugin never substitutes noon, invents a Rising
+sign, or displays houses that require an exact birth time. The Rising Sign
+calculator requires a time and rejects the unknown-time option.
+
+## Troubleshooting
+
+- **Calculator unavailable:** confirm an API key is saved under **Settings →
+  GetBirthChart**, then use **Test connection**. Also confirm the WordPress
+  server can reach `https://getbirthchart.com/api` over HTTPS.
+- **Place not found:** enter a more specific place name. Place resolution is
+  performed by the GetBirthChart places endpoint; the plugin does not geocode
+  locally.
+- **Rising sign unavailable:** provide a reliable local birth time. Unknown-time
+  requests intentionally cannot calculate an Ascendant.
+- **REST request rejected:** load the calculator from the WordPress page so the
+  current WordPress REST nonce is available; the endpoint is not a public
+  unauthenticated proxy.
+
 ## Screenshots
 
 Screenshot files are not bundled in the plugin zip. WordPress.org directory screenshots belong in the SVN `assets/` folder after approval:
@@ -128,3 +163,7 @@ Deactivation keeps settings. Uninstall deletes plugin-owned options, including t
 - [Developers](https://getbirthchart.com/developers/)
 - [Methodology](https://getbirthchart.com/methodology/)
 - [Privacy Policy](https://getbirthchart.com/privacy/)
+- [Core 1.13.0 GitHub release](https://github.com/getbirthchart-com/gbc-astro-engine/releases/tag/v1.13.0)
+- [Core 1.13.0 on PyPI](https://pypi.org/project/gbc-astro/1.13.0/)
+- [Core concept DOI](https://doi.org/10.5281/zenodo.22052875)
+- [Core version DOI](https://doi.org/10.5281/zenodo.22206006)

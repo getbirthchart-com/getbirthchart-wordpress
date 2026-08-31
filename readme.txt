@@ -23,6 +23,11 @@ Supported calculators:
 * Rising Sign
 * Big Three
 
+The current GetBirthChart API integration is compatible with the `gbc-astro`
+1.13.0 natal contract (schema 1.9.0). This plugin exposes only the calculators
+listed above; Sidereal, Custom aspects, Mean Node, Lilith, and advanced house
+system settings are not WordPress plugin features.
+
 If a visitor does not know their birth time, the plugin passes GetBirthChart’s official unknown-time flag. It does not substitute noon or invent a Rising sign.
 
 == Installation ==
@@ -65,6 +70,7 @@ No. The key is stored as a WordPress option and used only in server-side request
 * GetBirthChart API-key settings and a server-side connection test.
 * Secure server-side GetBirthChart API proxy.
 * Unknown birth-time handling.
+* Documentation aligned with the `gbc-astro` 1.13.0 natal contract; plugin version remains 0.1.0.
 
 == Upgrade Notice ==
 
@@ -88,6 +94,9 @@ https://getbirthchart.com/
 
 Privacy Policy:
 https://getbirthchart.com/privacy/
+
+Terms:
+https://getbirthchart.com/terms/
 
 Developers:
 https://getbirthchart.com/developers/
